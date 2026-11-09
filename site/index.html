@@ -18,5 +18,14 @@
     <div id="sections" aria-live="polite"><p class="empty">Загрузка…</p></div>
     <footer>Материалы курсов кафедры</footer>
   </main>
+<script>
+// Install Hyle's shared offline shell even when a subsite is opened directly.
+// Its worker only caches application assets; books and API remain on the network.
+if (location.hostname === 'hyle.space' && 'serviceWorker' in navigator) {
+  addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js', { scope: '/', updateViaCache: 'none' }).catch(() => {});
+  }, { once: true });
+}
+</script>
 </body>
 </html>
